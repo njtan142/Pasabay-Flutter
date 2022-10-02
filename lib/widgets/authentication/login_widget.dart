@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:taralets/widgets/authentication/password_recovery_widget.dart';
 import 'package:taralets/widgets/authentication/signin_widget.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -57,6 +58,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                 controller: paswordController,
                 decoration: const InputDecoration(hintText: "Password"),
                 obscureText: true,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PasswordRecoveryWidget()));
+                      },
+                      child: Text("Forgot Password"))
+                ],
               ),
               const SizedBox(
                 height: 40,
