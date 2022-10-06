@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:taralets/widgets/navbar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // TODO: implement initState
+    print(user.uid);
     FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
@@ -32,17 +34,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBarWidget(),
       appBar: AppBar(
         title: const Text("Pasabay"),
-        actions: [
-          ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              child: const Text("Logout"))
-        ],
       ),
       body: Center(
           child: Padding(
@@ -56,32 +58,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       )),
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22),
-        visible: true,
-        curve: Curves.bounceIn,
-        children: [
-          // FAB 1
-          SpeedDialChild(
-            child: Icon(Icons.upload),
-            onTap: () {/* do anything */},
-            label: 'Upload KYC',
-            labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 16.0),
-          ),
-          // FAB 2
-          SpeedDialChild(
-            child: Icon(Icons.edit_note),
-            label: 'Edit Profile',
-            labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 16.0),
-          ),
-          SpeedDialChild(
-            child: Icon(Icons.map),
-            label: 'Open Maps',
-            labelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 16.0),
-          )
-        ],
-      ),
     );
   }
 }

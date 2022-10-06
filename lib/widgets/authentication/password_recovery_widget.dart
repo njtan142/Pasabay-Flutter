@@ -36,7 +36,7 @@ class _PasswordRecoveryWidgetState extends State<PasswordRecoveryWidget> {
           padding: const EdgeInsets.all(20.0),
           child: Column(children: [
             const Text(
-              "Reset your password",
+              "Reset your passwordff", 
               style: TextStyle(fontSize: 30),
             ),
             const SizedBox(
